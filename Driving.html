@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<title>Smeet Kataria – The Drive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Space+Mono:ital@0;1&family=Syne:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@0.475.0"></script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased;}
+:root{
+  --ink:#f0ebe3;--ink2:#9c9188;--ink3:#3d3a36;--ink4:#1e1c1a;
+  --gold:#d4a96a;--gold2:rgba(212,169,106,0.15);
+  --smoke:#7fa8b8;--rose:#c9a0a0;
+  --bg:#060504;
+}
+html,body{width:100%;height:100%;background:var(--bg);}
+body{font-family:'Syne',sans-serif;color:var(--ink); display: flex; align-items: center; justify-content: center; min-height: 100vh;}
+
+/* BACKGROUND */
+.bg-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-image: url('driving-portrait.png');
+    z-index: -2;
+    transition: background-image 0.5s ease;
+}
+
+@media (min-width: 768px) {
+    .bg-image {
+        background-image: url('driving-landscape.png');
+    }
+}
+
+/* OVERLAY FOR BETTER READABILITY */
+.bg-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to bottom, rgba(6, 5, 4, 0.2), rgba(6, 5, 4, 0.7));
+    z-index: -1;
+}
+
+/* GLASSMORPHISM CARD */
+.glass-container {
+    padding: 2rem;
+    width: 100%;
+    max-width: 600px;
+    z-index: 10;
+}
+
+.glass-card {
+    background: rgba(10, 8, 6, 0.35);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(212, 169, 106, 0.25);
+    border-radius: 12px;
+    padding: 3.5rem 2.5rem;
+    text-align: center;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    animation: fadeUpIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeUpIn {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* TYPOGRAPHY */
+.tagline {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+.tagline::before, .tagline::after {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.5;
+}
+
+.title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: var(--ink);
+}
+.title em {
+    font-style: italic;
+    color: var(--gold);
+}
+
+.description {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--ink2);
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+}
+
+/* NAVIGATION LINKS */
+.journey-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 2rem;
+}
+
+.nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--ink);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px 20px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    background: rgba(212, 169, 106, 0.1);
+    border-color: rgba(212, 169, 106, 0.4);
+    color: var(--gold);
+}
+
+.nav-link.next:hover {
+    gap: 12px;
+}
+.nav-link.prev:hover {
+    gap: 12px;
+}
+
+.nav-link i {
+    width: 14px;
+    height: 14px;
+    transition: transform 0.3s ease;
+}
+
+/* GRAIN */
+.grain{position:fixed;inset:0;z-index:50;pointer-events:none;opacity:.4;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.8' numOctaves='4' type='fractalNoise' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.07'/%3E%3C/svg%3E");}
+
+</style>
+</head>
+<body>
+
+    <div class="grain"></div>
+    <div class="bg-image"></div>
+    <div class="bg-overlay"></div>
+
+    <div class="glass-container">
+        <div class="glass-card">
+            <div class="tagline">The Escape</div>
+            <h1 class="title">Late Night <em>Drives</em></h1>
+            <p class="description">
+                Some of my best ideas don't come from staring at a screen. They come from the open road, the hum of the engine, and the quiet moments between the chaos of life. This is where I disconnect to reconnect.
+            </p>
+            
+            <div class="journey-nav">
+                <a href="Bio.html" class="nav-link prev">
+                    <i data-lucide="arrow-left"></i> 
+                    <span>Back to Bio</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

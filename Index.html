@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smeet Kataria – Aspiring Software Engineer</title>
+    <meta name="description"
+        content="Smeet Kataria – Aspiring Software Engineer passionate about automation, scripting, and data analytics. First-year student at KJ Somaiya College of Engineering." />
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='80'>💻</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/lucide@0.475.0"></script>
+</head>
+
+<body>
+    <canvas id="bg"></canvas>
+
+    <div class="content">
+
+        <!-- HERO -->
+        <section class="hero" id="hero">
+            <div class="profile">
+                <img src="profile.jpg" alt="Smeet Kataria">
+            </div>
+            <div class="hero-text">
+                <h1>Smeet Kataria</h1>
+                <div class="tagline">Automating workflows. Turning data into decisions.</div>
+                <p class="subtitle">
+                    Aspiring Software Engineer passionate about automation, scripting &amp; data analytics.
+                    First-year B.Tech student at KJ Somaiya College of Engineering, Mumbai.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">88.1</div>
+                        <div class="stat-label">JEE Percentile</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">320</div>
+                        <div class="stat-label">Internship Hours</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">🎹</div>
+                        <div class="stat-label">Pianist</div>
+                    </div>
+                </div>
+                <div class="hero-actions">
+                    <a href="resume.pdf" download class="btn-primary">
+                        <i data-lucide="download"></i> Download Resume
+                    </a>
+                    <a href="contact.html" class="btn-secondary">Get in Touch</a>
+                </div>
+                <div class="socials">
+                    <a href="https://www.linkedin.com/in/smeet-kataria-89210b405" target="_blank"
+                        rel="noopener noreferrer" aria-label="LinkedIn">
+                        <i data-lucide="linkedin"></i>
+                    </a>
+                    <a href="https://github.com/smeetk-alt" target="_blank" rel="noopener noreferrer"
+                        aria-label="GitHub">
+                        <i data-lucide="github"></i>
+                    </a>
+                    <a href="mailto:smeet.kataria@somaiya.edu" aria-label="Email">
+                        <i data-lucide="mail"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- EDUCATION HIGHLIGHT -->
+        <section>
+            <div class="section-header">
+                <h2>Education</h2>
+                <a href="about.html" class="view-all">View All →</a>
+            </div>
+            <div class="grid">
+                <div class="card" onclick="location.href='about.html'">
+                    <div class="card-header">
+                        <div>
+                            <h3>B.Tech in Computer Engineering</h3>
+                            <p class="card-subtitle">KJ Somaiya College of Engineering</p>
+                            <p>2024 – 2028 | Mumbai</p>
+                        </div>
+                        <div class="card-icon">
+                            <i data-lucide="graduation-cap"></i>
+                        </div>
+                    </div>
+                    <div class="stats-grid">
+                        <span class="stat-badge">🏆 JEE Mains – 88.1 Percentile</span>
+                        <span class="stat-badge">📐 MHT-CET – 79.98 Percentile</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RECENT PROJECTS HIGHLIGHT -->
+        <section>
+            <div class="section-header">
+                <h2>Recent Projects</h2>
+                <a href="projects.html" class="view-all">View All →</a>
+            </div>
+            <div class="grid">
+                <div class="card" onclick="location.href='projects.html'">
+                    <div class="card-header">
+                        <div>
+                            <h3>Sports Performance Dashboard</h3>
+                            <p>Excel & Python dashboard tracking player metrics — cut report time by 50%</p>
+                        </div>
+                        <div class="card-icon">
+                            <i data-lucide="bar-chart-2"></i>
+                        </div>
+                    </div>
+                    <div class="card-tags">
+                        <span class="tag">Excel</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">Pandas</span>
+                    </div>
+                </div>
+                <div class="card" onclick="location.href='projects.html'">
+                    <div class="card-header">
+                        <div>
+                            <h3>Excel Reporting Pipelines</h3>
+                            <p>Automated report templates with VLOOKUP, INDEX/MATCH & data validation</p>
+                        </div>
+                        <div class="card-icon">
+                            <i data-lucide="terminal"></i>
+                        </div>
+                    </div>
+                    <div class="card-tags">
+                        <span class="tag">Google Sheets</span>
+                        <span class="tag">Automation</span>
+                        <span class="tag">SOP Design</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS HIGHLIGHT -->
+        <section>
+            <div class="section-header">
+                <h2>Core Skills</h2>
+                <a href="skills.html" class="view-all">View All →</a>
+            </div>
+            <div class="grid">
+                <div class="card" onclick="location.href='skills.html'">
+                    <div class="card-header">
+                        <div>
+                            <h3>Programming &amp; Scripting</h3>
+                            <p>Python, C, Java, Bash – scripts, automation & data tools</p>
+                        </div>
+                        <div class="card-icon">
+                            <i data-lucide="code-2"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" onclick="location.href='skills.html'">
+                    <div class="card-header">
+                        <div>
+                            <h3>Data &amp; Analytics</h3>
+                            <p>Pandas, NumPy, Matplotlib, SQL, Excel & Google Sheets</p>
+                        </div>
+                        <div class="card-icon">
+                            <i data-lucide="database"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>© <span id="year"></span> Smeet Kataria · Built with passion for Automation &amp; Systems</p>
+        </footer>
+
+    </div>
+
+    <script src="navigation.js"></script>
+    <script src="background.js"></script>
+</body>
+
+</html>
