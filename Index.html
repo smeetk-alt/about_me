@@ -1,181 +1,391 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Smeet Kataria – Aspiring Software Engineer</title>
-    <meta name="description"
-        content="Smeet Kataria – Aspiring Software Engineer passionate about automation, scripting, and data analytics. First-year student at KJ Somaiya College of Engineering." />
-    <link rel="icon" type="image/svg+xml"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='80'>💻</text></svg>">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://unpkg.com/lucide@0.475.0"></script>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Smeet Kataria — AI & Data Science Student</title>
+<meta name="description" content="Smeet Kataria — AI & Data Science student at KJ Somaiya, Mumbai. Data, automation, and software."/>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230a0a0a'/><text x='50' y='68' font-size='60' font-family='Georgia' fill='%23d4a96a' text-anchor='middle'>S</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased;}
+:root{
+  --ink:#ededed;
+  --ink2:#9a9a9a;
+  --ink3:#2a2a2a;
+  --accent:#d4a96a;
+  --bg:#0a0a0a;
+  --card:#111;
+  --border:rgba(255,255,255,.08);
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--ink);background:var(--bg);font-weight:400;line-height:1.6;position:relative;overflow-x:hidden;}
+.bg-mesh{position:fixed;inset:-20%;z-index:0;pointer-events:none;filter:blur(60px);opacity:.55;}
+.bg-mesh span{position:absolute;border-radius:50%;mix-blend-mode:screen;}
+.bg-mesh .b1{width:48vw;height:48vw;left:-8%;top:-10%;background:radial-gradient(circle,rgba(212,169,106,.55),transparent 70%);animation:drift1 22s ease-in-out infinite;}
+.bg-mesh .b2{width:42vw;height:42vw;right:-10%;top:8%;background:radial-gradient(circle,rgba(212,169,106,.40),transparent 70%);animation:drift2 26s ease-in-out infinite;}
+.bg-mesh .b3{width:50vw;height:50vw;left:25%;bottom:-15%;background:radial-gradient(circle,rgba(150,110,220,.35),transparent 70%);animation:drift3 30s ease-in-out infinite;}
+.bg-mesh .b4{width:36vw;height:36vw;left:55%;top:45%;background:radial-gradient(circle,rgba(212,169,106,.30),transparent 70%);animation:drift1 28s ease-in-out infinite reverse;}
+@keyframes drift1{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(8%,6%) scale(1.15);}}
+@keyframes drift2{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-6%,10%) scale(1.1);}}
+@keyframes drift3{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(5%,-8%) scale(1.2);}}
+
+.bg-stars{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
+.bg-stars span{position:absolute;background:#fff;border-radius:50%;opacity:0;animation:twinkle linear infinite;}
+@keyframes twinkle{
+  0%{opacity:0;transform:translateY(0);}
+  20%{opacity:.8;}
+  80%{opacity:.6;}
+  100%{opacity:0;transform:translateY(-30px);}
+}
+body > *{position:relative;z-index:1;}
+
+/* TOP BAR */
+#topbar{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 32px;
+  display:flex;justify-content:space-between;align-items:center;
+  background:rgba(10,10,10,.8);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);}
+.tb-logo{font-weight:600;font-size:.95rem;color:var(--ink);text-decoration:none;letter-spacing:-.01em;}
+.tb-nav{display:flex;gap:28px;}
+.tb-nav a{font-size:.85rem;color:var(--ink2);text-decoration:none;transition:color .2s;font-weight:400;}
+.tb-nav a:hover{color:var(--ink);}
+@media(max-width:600px){#topbar{padding:14px 20px;}.tb-nav{gap:18px;}.tb-nav a{font-size:.8rem;}}
+
+/* CONTAINER */
+.container{max-width:880px;margin:0 auto;padding:0 28px;}
+
+/* HERO */
+.hero{padding:140px 28px 80px;}
+.hero-inner{max-width:880px;margin:0 auto;display:flex;gap:48px;align-items:center;}
+.hero-text{flex:1;min-width:0;}
+.hero-photo{flex:0 0 140px;width:140px;height:140px;border-radius:50%;overflow:hidden;
+  border:2px solid var(--accent);box-shadow:0 0 0 6px rgba(212,169,106,.08);
+  background:linear-gradient(135deg,#1a1a1a,#0a0a0a);position:relative;}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center 25%;display:block;position:relative;z-index:2;}
+.hero-photo-fallback{position:absolute;inset:0;z-index:1;display:flex;align-items:center;justify-content:center;
+  font-family:'JetBrains Mono',monospace;font-size:2.2rem;color:var(--accent);font-weight:500;letter-spacing:.02em;}
+@media(max-width:680px){
+  .hero-inner{flex-direction:column-reverse;gap:28px;align-items:flex-start;}
+  .hero-photo{flex:0 0 96px;width:96px;height:96px;}
+}
+.hero-eyebrow{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--accent);margin-bottom:24px;letter-spacing:.02em;}
+.hero h1{font-size:clamp(2.4rem,6vw,3.6rem);font-weight:600;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}
+.hero h1 span{color:var(--accent);}
+.hero-lede{font-size:1.1rem;color:var(--ink2);max-width:620px;margin-bottom:36px;font-weight:300;}
+.hero-meta{display:flex;flex-wrap:wrap;gap:20px 28px;font-size:.85rem;color:var(--ink2);margin-bottom:36px;}
+.hero-meta span{display:inline-flex;align-items:center;gap:8px;}
+.hero-meta span::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--accent);}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;font-size:.88rem;font-weight:500;
+  text-decoration:none;border-radius:6px;transition:all .2s;border:1px solid transparent;}
+.btn-primary{background:var(--accent);color:#0a0a0a;}
+.btn-primary:hover{background:#e3b876;}
+.btn-secondary{background:transparent;color:var(--ink);border-color:var(--border);}
+.btn-secondary:hover{border-color:var(--ink2);background:rgba(255,255,255,.03);}
+
+/* SECTION */
+section{padding:80px 0;border-top:1px solid var(--border);}
+.sec-label{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--accent);margin-bottom:12px;letter-spacing:.04em;}
+.sec-title{font-size:1.75rem;font-weight:600;letter-spacing:-.01em;margin-bottom:36px;}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:48px;}
+@media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr);}}
+.stat{background:var(--card);padding:24px 20px;}
+.stat-n{font-size:1.9rem;font-weight:600;color:var(--ink);letter-spacing:-.02em;}
+.stat-n span{color:var(--accent);font-size:1rem;font-weight:400;margin-left:2px;}
+.stat-l{font-size:.78rem;color:var(--ink2);margin-top:6px;}
+
+/* EXPERIENCE / EDUCATION LIST */
+.entry{padding:24px 0;border-bottom:1px solid var(--border);}
+.entry:last-child{border-bottom:none;}
+.entry-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;margin-bottom:6px;}
+.entry-title{font-size:1.05rem;font-weight:600;color:var(--ink);}
+.entry-org{color:var(--ink2);font-weight:400;}
+.entry-date{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--ink2);}
+.entry-body{font-size:.92rem;color:var(--ink2);margin-top:8px;max-width:680px;}
+.entry-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;}
+.tag{font-family:'JetBrains Mono',monospace;font-size:.7rem;padding:3px 9px;border:1px solid var(--border);border-radius:4px;color:var(--ink2);}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;}
+.skill-group h4{font-size:.78rem;font-family:'JetBrains Mono',monospace;color:var(--accent);margin-bottom:12px;letter-spacing:.02em;}
+.skill-group ul{list-style:none;display:flex;flex-direction:column;gap:6px;}
+.skill-group li{font-size:.92rem;color:var(--ink);}
+
+/* PERSONAL / OFF-HOURS */
+.beyond{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;}
+.beyond-card{padding:22px;border:1px solid var(--border);border-radius:8px;background:var(--card);text-decoration:none;color:inherit;transition:border-color .2s,transform .2s;}
+.beyond-card:hover{border-color:var(--ink2);transform:translateY(-2px);}
+.beyond-card h4{font-size:1rem;font-weight:600;margin-bottom:6px;}
+.beyond-card p{font-size:.85rem;color:var(--ink2);}
+
+/* CONTACT */
+.contact-list{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden;}
+@media(max-width:600px){.contact-list{grid-template-columns:1fr;}}
+.contact-list a{background:var(--card);padding:18px 22px;text-decoration:none;display:block;transition:background .2s;}
+.contact-list a:hover{background:#161616;}
+.contact-l{font-size:.75rem;font-family:'JetBrains Mono',monospace;color:var(--ink2);margin-bottom:4px;}
+.contact-v{font-size:.95rem;color:var(--ink);}
+
+/* FOOTER */
+footer{padding:40px 28px;text-align:center;font-size:.8rem;color:var(--ink2);border-top:1px solid var(--border);}
+</style>
 </head>
-
 <body>
-    <canvas id="bg"></canvas>
 
-    <div class="content">
+<div class="bg-mesh" aria-hidden="true"><span class="b1"></span><span class="b2"></span><span class="b3"></span><span class="b4"></span></div>
+<div class="bg-stars" id="stars" aria-hidden="true"></div>
 
-        <!-- HERO -->
-        <section class="hero" id="hero">
-            <div class="profile">
-                <img src="profile.jpg" alt="Smeet Kataria">
-            </div>
-            <div class="hero-text">
-                <h1>Smeet Kataria</h1>
-                <div class="tagline">Automating workflows. Turning data into decisions.</div>
-                <p class="subtitle">
-                    Aspiring Software Engineer passionate about automation, scripting &amp; data analytics.
-                    First-year B.Tech student at KJ Somaiya College of Engineering, Mumbai.
-                </p>
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <div class="stat-number">88.1</div>
-                        <div class="stat-label">JEE Percentile</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">320</div>
-                        <div class="stat-label">Internship Hours</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">🎹</div>
-                        <div class="stat-label">Pianist</div>
-                    </div>
-                </div>
-                <div class="hero-actions">
-                    <a href="resume.pdf" download class="btn-primary">
-                        <i data-lucide="download"></i> Download Resume
-                    </a>
-                    <a href="contact.html" class="btn-secondary">Get in Touch</a>
-                </div>
-                <div class="socials">
-                    <a href="https://www.linkedin.com/in/smeet-kataria-89210b405" target="_blank"
-                        rel="noopener noreferrer" aria-label="LinkedIn">
-                        <i data-lucide="linkedin"></i>
-                    </a>
-                    <a href="https://github.com/smeetk-alt" target="_blank" rel="noopener noreferrer"
-                        aria-label="GitHub">
-                        <i data-lucide="github"></i>
-                    </a>
-                    <a href="mailto:smeet.kataria@somaiya.edu" aria-label="Email">
-                        <i data-lucide="mail"></i>
-                    </a>
-                </div>
-            </div>
-        </section>
+<nav id="topbar">
+  <a class="tb-logo" href="#top">Smeet Kataria</a>
+  <div class="tb-nav">
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#beyond">Beyond Work</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
 
-        <!-- EDUCATION HIGHLIGHT -->
-        <section>
-            <div class="section-header">
-                <h2>Education</h2>
-                <a href="about.html" class="view-all">View All →</a>
-            </div>
-            <div class="grid">
-                <div class="card" onclick="location.href='about.html'">
-                    <div class="card-header">
-                        <div>
-                            <h3>B.Tech in Computer Engineering</h3>
-                            <p class="card-subtitle">KJ Somaiya College of Engineering</p>
-                            <p>2024 – 2028 | Mumbai</p>
-                        </div>
-                        <div class="card-icon">
-                            <i data-lucide="graduation-cap"></i>
-                        </div>
-                    </div>
-                    <div class="stats-grid">
-                        <span class="stat-badge">🏆 JEE Mains – 88.1 Percentile</span>
-                        <span class="stat-badge">📐 MHT-CET – 79.98 Percentile</span>
-                    </div>
-                </div>
-            </div>
-        </section>
+<header class="hero" id="top">
+  <div class="hero-inner">
+    <div class="hero-text">
+    <div class="hero-eyebrow">Available for internships · Summer 2026</div>
+    <h1>Smeet Kataria<br><span>AI &amp; Data Science student.</span></h1>
+    <p class="hero-lede">Second-year B.Tech student at KJ Somaiya College of Engineering, Mumbai. I work on data automation, reporting workflows, and the software that connects them.</p>
+    <div class="hero-meta">
+      <span>Thane, Mumbai</span>
+      <span>B.Tech AI &amp; DS, 2024–2028</span>
+      <span>Open to remote / on-site</span>
+    </div>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="resume.pdf" target="_blank" rel="noopener">Download Résumé</a>
+      <a class="btn btn-secondary" href="#contact">Get in touch</a>
+      <a class="btn btn-secondary" href="https://github.com/smeetk-alt" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    </div>
+    <div class="hero-photo">
+      <div class="hero-photo-fallback">SK</div>
+      <img src="profile.jpeg" alt="Smeet Kataria" onerror="this.style.display='none'">
+    </div>
+  </div>
+</header>
 
-        <!-- RECENT PROJECTS HIGHLIGHT -->
-        <section>
-            <div class="section-header">
-                <h2>Recent Projects</h2>
-                <a href="projects.html" class="view-all">View All →</a>
-            </div>
-            <div class="grid">
-                <div class="card" onclick="location.href='projects.html'">
-                    <div class="card-header">
-                        <div>
-                            <h3>Sports Performance Dashboard</h3>
-                            <p>Excel & Python dashboard tracking player metrics — cut report time by 50%</p>
-                        </div>
-                        <div class="card-icon">
-                            <i data-lucide="bar-chart-2"></i>
-                        </div>
-                    </div>
-                    <div class="card-tags">
-                        <span class="tag">Excel</span>
-                        <span class="tag">Python</span>
-                        <span class="tag">Pandas</span>
-                    </div>
-                </div>
-                <div class="card" onclick="location.href='projects.html'">
-                    <div class="card-header">
-                        <div>
-                            <h3>Excel Reporting Pipelines</h3>
-                            <p>Automated report templates with VLOOKUP, INDEX/MATCH & data validation</p>
-                        </div>
-                        <div class="card-icon">
-                            <i data-lucide="terminal"></i>
-                        </div>
-                    </div>
-                    <div class="card-tags">
-                        <span class="tag">Google Sheets</span>
-                        <span class="tag">Automation</span>
-                        <span class="tag">SOP Design</span>
-                    </div>
-                </div>
-            </div>
-        </section>
+<section id="experience">
+  <div class="container">
+    <div class="sec-label">01 — Experience &amp; Education</div>
+    <h2 class="sec-title">Where I've worked and studied.</h2>
 
-        <!-- SKILLS HIGHLIGHT -->
-        <section>
-            <div class="section-header">
-                <h2>Core Skills</h2>
-                <a href="skills.html" class="view-all">View All →</a>
-            </div>
-            <div class="grid">
-                <div class="card" onclick="location.href='skills.html'">
-                    <div class="card-header">
-                        <div>
-                            <h3>Programming &amp; Scripting</h3>
-                            <p>Python, C, Java, Bash – scripts, automation & data tools</p>
-                        </div>
-                        <div class="card-icon">
-                            <i data-lucide="code-2"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="card" onclick="location.href='skills.html'">
-                    <div class="card-header">
-                        <div>
-                            <h3>Data &amp; Analytics</h3>
-                            <p>Pandas, NumPy, Matplotlib, SQL, Excel & Google Sheets</p>
-                        </div>
-                        <div class="card-icon">
-                            <i data-lucide="database"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <footer>
-            <p>© <span id="year"></span> Smeet Kataria · Built with passion for Automation &amp; Systems</p>
-        </footer>
-
+    <div class="stats">
+      <div class="stat"><div class="stat-n">560<span>hrs</span></div><div class="stat-l">Internship completed</div></div>
+      <div class="stat"><div class="stat-n">50<span>%</span></div><div class="stat-l">Reporting time reduced</div></div>
+      <div class="stat"><div class="stat-n">88.1<span>%ile</span></div><div class="stat-l">JEE Mains 2024</div></div>
+      <div class="stat"><div class="stat-n">79.98<span>%ile</span></div><div class="stat-l">MHT-CET 2024</div></div>
+      <div class="stat"><div class="stat-n">4<span>shipped</span></div><div class="stat-l">Production projects</div></div>
+      <div class="stat"><div class="stat-n">2nd<span>yr</span></div><div class="stat-l">B.Tech AI &amp; DS</div></div>
     </div>
 
-    <script src="navigation.js"></script>
-    <script src="background.js"></script>
-</body>
+    <div class="entry">
+      <div class="entry-head">
+        <div class="entry-title">Software Development Intern <span class="entry-org">— DVOC</span></div>
+        <div class="entry-date">Jun – Jul 2025 · 240 hours</div>
+      </div>
+      <div class="entry-body">Six-week full-time internship (10:00–17:00). Shipped four client-facing builds: an AI-powered WhatsApp support bot, a Next.js agency operating system (CRM, proposals, billing, client portal), a Shopify storefront for a fashion-jewellery brand, and a WhatsApp automation proposal stack for a retail client.</div>
+      <div class="entry-tags">
+        <span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">Node.js</span><span class="tag">Supabase</span><span class="tag">Shopify Liquid</span><span class="tag">WhatsApp API</span>
+      </div>
+    </div>
 
+    <div class="entry">
+      <div class="entry-head">
+        <div class="entry-title">Data &amp; Operations Intern <span class="entry-org">— Somaiya Sports Academy</span></div>
+        <div class="entry-date">2024 · 320 hours</div>
+      </div>
+      <div class="entry-body">Built automated reporting templates using VLOOKUP, INDEX/MATCH, and SUMIFS that cut weekly reporting time by 50% and eliminated calculation errors. Documented SOPs for the operations team.</div>
+      <div class="entry-tags">
+        <span class="tag">Excel</span><span class="tag">Google Sheets</span><span class="tag">SOP Design</span><span class="tag">Analytics</span>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <div class="entry-title">B.Tech, Artificial Intelligence &amp; Data Science <span class="entry-org">— KJ Somaiya College of Engineering, Mumbai</span></div>
+        <div class="entry-date">2024 – 2028</div>
+      </div>
+      <div class="entry-body">Coursework in data structures, systems, and software development. JEE Mains 88.1 percentile (top 12% of 1.2M+ candidates).</div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <div class="entry-title">Independent Learning <span class="entry-org">— Data &amp; Automation</span></div>
+        <div class="entry-date">Ongoing</div>
+      </div>
+      <div class="entry-body">Working through SQL, dashboarding, and Python automation on real datasets. Building toward production-grade data workflows.</div>
+      <div class="entry-tags">
+        <span class="tag">SQL</span><span class="tag">Python</span><span class="tag">Dashboards</span><span class="tag">Automation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <div class="sec-label">02 — Selected Projects</div>
+    <h2 class="sec-title">Things I've built.</h2>
+
+    <div class="entry">
+      <div class="entry-head">
+        <div class="entry-title">VAELO — Agency Operating System</div>
+        <div class="entry-date">Next.js · TypeScript · Supabase</div>
+      </div>
+      <div class="entry-body">Internal platform running the full client lifecycle for a digital marketing agency — lead capture, proposals, onboarding, creative delivery, invoicing, and a mobile-first client portal. Designed around an Indian-market stack (Razorpay, WhatsApp-first comms, INR).</div>
+      <div class="entry-tags">
+        <span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">Supabase</span><span class="tag">Tailwind</span><span class="tag">Vercel</span>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <div class="entry-title">Tribal Zone — Shopify Storefront</div>
+        <div class="entry-date">Shopify Liquid · HTML/CSS/JS</div>
+      </div>
+      <div class="entry-body">Full Shopify-ready storefront for an Indian fashion-jewellery brand: homepage, 6 collection pages with client-side filtering, product detail page with hover-zoom gallery, cart drawer, and Liquid sections/snippets ready to deploy. Iterated across 40+ theme versions before live cutover.</div>
+      <div class="entry-tags">
+        <span class="tag">Shopify Liquid</span><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">E-commerce</span>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <div class="entry-title">DVOC WhatsApp Support Bot</div>
+        <div class="entry-date">Node.js · WhatsApp API</div>
+      </div>
+      <div class="entry-body">AI-assisted WhatsApp bot that answers customer queries from a curated knowledge base, handling routing and fallback to a human agent. Built end-to-end: webhook server, message handling, and knowledge ingestion.</div>
+      <div class="entry-tags">
+        <span class="tag">Node.js</span><span class="tag">WhatsApp Cloud API</span><span class="tag">LLM</span>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <div class="entry-title">Miraaya WhatsApp Automation</div>
+        <div class="entry-date">Node.js · Proxy server</div>
+      </div>
+      <div class="entry-body">WhatsApp automation stack for a retail client — proxy server, message handler, and a packaged proposal covering scope, architecture, and cost composition. Delivered as a deployable build plus client-ready documentation.</div>
+      <div class="entry-tags">
+        <span class="tag">Node.js</span><span class="tag">WhatsApp API</span><span class="tag">Client Delivery</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="container">
+    <div class="sec-label">03 — Skills</div>
+    <h2 class="sec-title">What I work with.</h2>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h4>Data &amp; Analytics</h4>
+        <ul>
+          <li>Excel (advanced formulas, pivot tables)</li>
+          <li>Google Sheets</li>
+          <li>SQL (learning)</li>
+          <li>Dashboarding</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h4>Programming</h4>
+        <ul>
+          <li>Python</li>
+          <li>C / C++</li>
+          <li>HTML, CSS, JavaScript</li>
+          <li>Git &amp; GitHub</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h4>Operations</h4>
+        <ul>
+          <li>Workflow automation</li>
+          <li>SOP documentation</li>
+          <li>Reporting design</li>
+          <li>Stakeholder communication</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="beyond">
+  <div class="container">
+    <div class="sec-label">04 — Beyond Work</div>
+    <h2 class="sec-title">Outside the screen.</h2>
+    <div class="beyond">
+      <a class="beyond-card" href="smeet-bio.html">
+        <h4>Full Bio</h4>
+        <p>The longer story — background, interests, what shaped me.</p>
+      </a>
+      <a class="beyond-card" href="RoadmapJourney.html">
+        <h4>Interactive Roadmap</h4>
+        <p>A driving-themed walkthrough of my journey so far.</p>
+      </a>
+      <a class="beyond-card" href="https://pin.it/7MARs37NP" target="_blank" rel="noopener">
+        <h4>Photography</h4>
+        <p>Selected frames — light, landscape, and travel.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="sec-label">05 — Contact</div>
+    <h2 class="sec-title">Let's talk.</h2>
+    <div class="contact-list">
+      <a href="mailto:smeet.kataria@somaiya.edu">
+        <div class="contact-l">Email</div>
+        <div class="contact-v">smeet.kataria@somaiya.edu</div>
+      </a>
+      <a href="tel:+919321864870">
+        <div class="contact-l">Phone / WhatsApp</div>
+        <div class="contact-v">+91 93218 64870</div>
+      </a>
+      <a href="https://www.linkedin.com/in/smeet-kataria-89210b405" target="_blank" rel="noopener">
+        <div class="contact-l">LinkedIn</div>
+        <div class="contact-v">smeet-kataria</div>
+      </a>
+      <a href="https://github.com/smeetk-alt" target="_blank" rel="noopener">
+        <div class="contact-l">GitHub</div>
+        <div class="contact-v">@smeetk-alt</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © <span id="yr"></span> Smeet Kataria · Thane, Mumbai, India
+</footer>
+
+<script>
+document.getElementById('yr').textContent=new Date().getFullYear();
+
+(function(){
+  const host=document.getElementById('stars');
+  const N=80;
+  for(let i=0;i<N;i++){
+    const s=document.createElement('span');
+    const size=Math.random()*1.8+0.4;
+    s.style.width=s.style.height=size+'px';
+    s.style.left=Math.random()*100+'%';
+    s.style.top=Math.random()*100+'%';
+    const dur=Math.random()*2.5+1.5;
+    s.style.animationDuration=dur+'s';
+    s.style.animationDelay=(-Math.random()*dur)+'s';
+    host.appendChild(s);
+  }
+})();
+</script>
+</body>
 </html>

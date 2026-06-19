@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Smeet Kataria — Journey</title>
+<meta name="description" content="The story so far — a visual timeline of Smeet Kataria's academic and professional journey."/>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230a0a0a'/><text x='50' y='68' font-size='60' font-family='Georgia' fill='%23d4a96a' text-anchor='middle'>S</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased;}
+:root{
+  --ink:#ededed;--ink2:#9a9a9a;--ink3:#2a2a2a;
+  --accent:#d4a96a;--bg:#0a0a0a;--card:#111;
+  --border:rgba(255,255,255,.08);
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',-apple-system,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;overflow-x:hidden;position:relative;}
+
+/* BACKGROUND (matches Index) */
+.bg-mesh{position:fixed;inset:-20%;z-index:0;pointer-events:none;filter:blur(60px);opacity:.5;}
+.bg-mesh span{position:absolute;border-radius:50%;mix-blend-mode:screen;}
+.bg-mesh .b1{width:48vw;height:48vw;left:-8%;top:-10%;background:radial-gradient(circle,rgba(212,169,106,.55),transparent 70%);animation:drift1 22s ease-in-out infinite;}
+.bg-mesh .b2{width:42vw;height:42vw;right:-10%;top:8%;background:radial-gradient(circle,rgba(212,169,106,.40),transparent 70%);animation:drift2 26s ease-in-out infinite;}
+.bg-mesh .b3{width:50vw;height:50vw;left:25%;bottom:-15%;background:radial-gradient(circle,rgba(150,110,220,.35),transparent 70%);animation:drift3 30s ease-in-out infinite;}
+.bg-mesh .b4{width:36vw;height:36vw;left:55%;top:45%;background:radial-gradient(circle,rgba(212,169,106,.30),transparent 70%);animation:drift1 28s ease-in-out infinite reverse;}
+@keyframes drift1{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(8%,6%) scale(1.15);}}
+@keyframes drift2{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-6%,10%) scale(1.1);}}
+@keyframes drift3{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(5%,-8%) scale(1.2);}}
+.bg-stars{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
+.bg-stars span{position:absolute;background:#fff;border-radius:50%;opacity:0;animation:twinkle linear infinite;}
+@keyframes twinkle{0%{opacity:0;transform:translateY(0);}20%{opacity:.8;}80%{opacity:.6;}100%{opacity:0;transform:translateY(-30px);}}
+body > *{position:relative;z-index:1;}
+
+/* TOPBAR */
+#topbar{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 32px;
+  display:flex;justify-content:space-between;align-items:center;
+  background:rgba(10,10,10,.8);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+.tb-logo{font-weight:600;font-size:.95rem;color:var(--ink);text-decoration:none;}
+.tb-back{font-size:.85rem;color:var(--ink2);text-decoration:none;transition:color .2s;font-family:'JetBrains Mono',monospace;}
+.tb-back:hover{color:var(--accent);}
+
+/* HERO */
+.hero{padding:160px 28px 60px;text-align:center;max-width:760px;margin:0 auto;}
+.hero-eyebrow{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--accent);margin-bottom:20px;letter-spacing:.04em;}
+.hero h1{font-size:clamp(2.4rem,6vw,3.6rem);font-weight:600;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}
+.hero h1 span{color:var(--accent);}
+.hero p{font-size:1.1rem;color:var(--ink2);font-weight:300;max-width:560px;margin:0 auto;}
+
+/* TIMELINE WRAPPER */
+.timeline{position:relative;max-width:1000px;margin:40px auto 120px;padding:60px 28px;}
+
+/* SVG PATH (the road) */
+.road-svg{position:absolute;left:50%;top:0;transform:translateX(-50%);width:140px;height:100%;pointer-events:none;z-index:0;}
+.road-svg path{fill:none;stroke:var(--accent);stroke-width:3;stroke-linecap:round;stroke-dasharray:8 12;
+  stroke-dashoffset:var(--len,2000);}
+.road-svg .road-bg{stroke:rgba(212,169,106,.15);stroke-dasharray:none;stroke-width:2;stroke-dashoffset:0;}
+.road-svg .road-fg{filter:drop-shadow(0 0 6px rgba(212,169,106,.5));transition:stroke-dashoffset .1s linear;}
+
+/* MILESTONES */
+.milestone{position:relative;display:grid;grid-template-columns:1fr 80px 1fr;gap:0;align-items:center;
+  margin:60px 0;opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease;}
+.milestone.visible{opacity:1;transform:translateY(0);}
+.milestone:nth-child(even) .ms-card{grid-column:3;}
+.milestone:nth-child(even) .ms-spacer{grid-column:1;}
+.milestone:nth-child(odd) .ms-card{grid-column:1;}
+.milestone:nth-child(odd) .ms-spacer{grid-column:3;}
+.ms-dot{grid-column:2;justify-self:center;width:18px;height:18px;border-radius:50%;
+  background:var(--bg);border:3px solid var(--accent);position:relative;z-index:2;
+  box-shadow:0 0 0 6px rgba(212,169,106,.1),0 0 20px rgba(212,169,106,.4);}
+.milestone.visible .ms-dot{animation:pulse 2.5s ease-in-out infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 6px rgba(212,169,106,.1),0 0 20px rgba(212,169,106,.4);}
+  50%{box-shadow:0 0 0 10px rgba(212,169,106,.05),0 0 30px rgba(212,169,106,.6);}}
+
+.ms-card{background:rgba(17,17,17,.7);backdrop-filter:blur(10px);
+  border:1px solid var(--border);border-radius:10px;padding:24px 26px;
+  transition:border-color .25s,transform .25s;}
+.ms-card:hover{border-color:rgba(212,169,106,.4);transform:translateY(-3px);}
+.ms-date{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--accent);
+  letter-spacing:.04em;margin-bottom:8px;}
+.ms-title{font-size:1.15rem;font-weight:600;color:var(--ink);margin-bottom:4px;letter-spacing:-.01em;}
+.ms-org{font-size:.88rem;color:var(--ink2);margin-bottom:12px;}
+.ms-body{font-size:.9rem;color:var(--ink2);line-height:1.55;}
+.ms-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;}
+.ms-tag{font-family:'JetBrains Mono',monospace;font-size:.68rem;padding:3px 8px;
+  border:1px solid var(--border);border-radius:4px;color:var(--ink2);}
+.ms-metric{display:inline-block;margin-top:10px;font-family:'JetBrains Mono',monospace;
+  font-size:.78rem;color:var(--accent);background:rgba(212,169,106,.08);
+  padding:4px 10px;border-radius:4px;border:1px solid rgba(212,169,106,.2);}
+
+/* MOBILE */
+@media(max-width:760px){
+  .road-svg{left:24px;transform:none;width:60px;}
+  .milestone{grid-template-columns:48px 1fr;gap:14px;}
+  .milestone:nth-child(even) .ms-card,.milestone:nth-child(odd) .ms-card{grid-column:2;}
+  .ms-spacer{display:none;}
+  .ms-dot{grid-column:1;justify-self:center;}
+  .hero{padding-top:130px;}
+}
+
+/* FINISH */
+.finish{text-align:center;padding:80px 28px;border-top:1px solid var(--border);max-width:880px;margin:0 auto;}
+.finish-flag{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--accent);
+  letter-spacing:.06em;margin-bottom:14px;}
+.finish h2{font-size:2rem;font-weight:600;letter-spacing:-.02em;margin-bottom:14px;}
+.finish p{color:var(--ink2);max-width:540px;margin:0 auto 28px;font-weight:300;}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;font-size:.88rem;
+  font-weight:500;text-decoration:none;border-radius:6px;transition:all .2s;border:1px solid transparent;}
+.btn-primary{background:var(--accent);color:#0a0a0a;}
+.btn-primary:hover{background:#e3b876;}
+.btn-secondary{background:transparent;color:var(--ink);border-color:var(--border);}
+.btn-secondary:hover{border-color:var(--ink2);background:rgba(255,255,255,.03);}
+
+footer{padding:30px 28px;text-align:center;font-size:.78rem;color:var(--ink2);border-top:1px solid var(--border);}
+</style>
+</head>
+<body>
+
+<div class="bg-mesh" aria-hidden="true"><span class="b1"></span><span class="b2"></span><span class="b3"></span><span class="b4"></span></div>
+<div class="bg-stars" id="stars" aria-hidden="true"></div>
+
+<nav id="topbar">
+  <a class="tb-logo" href="Index.html">Smeet Kataria</a>
+  <a class="tb-back" href="Index.html">← Back to portfolio</a>
+</nav>
+
+<header class="hero">
+  <div class="hero-eyebrow">The journey so far</div>
+  <h1>From <span>JEE</span> to shipping<br>production code.</h1>
+  <p>A timeline of the milestones, internships, and projects that brought me here — scroll to follow the road.</p>
+</header>
+
+<section class="timeline" id="timeline">
+  <svg class="road-svg" preserveAspectRatio="none" viewBox="0 0 140 2000">
+    <path class="road-bg" d="M70,0 Q120,200 70,400 Q20,600 70,800 Q120,1000 70,1200 Q20,1400 70,1600 Q120,1800 70,2000"/>
+    <path class="road-fg" d="M70,0 Q120,200 70,400 Q20,600 70,800 Q120,1000 70,1200 Q20,1400 70,1600 Q120,1800 70,2000"/>
+  </svg>
+
+  <div class="milestone">
+    <div class="ms-card">
+      <div class="ms-date">2024 · Spring</div>
+      <div class="ms-title">JEE Mains & MHT-CET</div>
+      <div class="ms-org">National engineering entrance exams</div>
+      <div class="ms-body">Cleared JEE Mains at 88.1 percentile (top 12% of 1.2M+ candidates) and MHT-CET at 79.98 percentile — earning a seat at KJ Somaiya College of Engineering.</div>
+      <div class="ms-metric">88.1 %ile · JEE Mains</div>
+    </div>
+    <div class="ms-dot"></div>
+    <div class="ms-spacer"></div>
+  </div>
+
+  <div class="milestone">
+    <div class="ms-spacer"></div>
+    <div class="ms-dot"></div>
+    <div class="ms-card">
+      <div class="ms-date">2024 — 2028</div>
+      <div class="ms-title">B.Tech, AI & Data Science</div>
+      <div class="ms-org">KJ Somaiya College of Engineering, Mumbai</div>
+      <div class="ms-body">Coursework spans data structures, systems, and software development — the foundation for everything that came after.</div>
+      <div class="ms-tags"><span class="ms-tag">Data Structures</span><span class="ms-tag">Systems</span><span class="ms-tag">Software Dev</span></div>
+    </div>
+  </div>
+
+  <div class="milestone">
+    <div class="ms-card">
+      <div class="ms-date">2024 · 320 hours</div>
+      <div class="ms-title">Data & Operations Intern</div>
+      <div class="ms-org">Somaiya Sports Academy</div>
+      <div class="ms-body">Built automated reporting templates using VLOOKUP, INDEX/MATCH, and SUMIFS. Cut weekly reporting time by half and eliminated calculation errors. Wrote SOPs the team still uses.</div>
+      <div class="ms-metric">50% faster reporting</div>
+      <div class="ms-tags"><span class="ms-tag">Excel</span><span class="ms-tag">Sheets</span><span class="ms-tag">SOPs</span><span class="ms-tag">Analytics</span></div>
+    </div>
+    <div class="ms-dot"></div>
+    <div class="ms-spacer"></div>
+  </div>
+
+  <div class="milestone">
+    <div class="ms-spacer"></div>
+    <div class="ms-dot"></div>
+    <div class="ms-card">
+      <div class="ms-date">Jun – Jul 2025 · 240 hours</div>
+      <div class="ms-title">Software Development Intern</div>
+      <div class="ms-org">DVOC</div>
+      <div class="ms-body">Six-week full-time. Shipped four client-facing builds: an AI WhatsApp support bot, a Next.js agency operating system, a Shopify storefront for a fashion-jewellery brand, and a WhatsApp automation stack for a retail client.</div>
+      <div class="ms-metric">4 production builds shipped</div>
+      <div class="ms-tags"><span class="ms-tag">Next.js</span><span class="ms-tag">TypeScript</span><span class="ms-tag">Supabase</span><span class="ms-tag">Shopify</span><span class="ms-tag">WhatsApp API</span></div>
+    </div>
+  </div>
+
+  <div class="milestone">
+    <div class="ms-card">
+      <div class="ms-date">Ongoing</div>
+      <div class="ms-title">Independent Learning</div>
+      <div class="ms-org">Data & Automation</div>
+      <div class="ms-body">Working through SQL, dashboarding, and Python automation on real datasets. Building toward production-grade data workflows.</div>
+      <div class="ms-tags"><span class="ms-tag">SQL</span><span class="ms-tag">Python</span><span class="ms-tag">Dashboards</span><span class="ms-tag">Automation</span></div>
+    </div>
+    <div class="ms-dot"></div>
+    <div class="ms-spacer"></div>
+  </div>
+
+  <div class="milestone">
+    <div class="ms-spacer"></div>
+    <div class="ms-dot"></div>
+    <div class="ms-card">
+      <div class="ms-date">2026 · Now</div>
+      <div class="ms-title">Second year — looking ahead</div>
+      <div class="ms-org">Available for Summer 2026 internships</div>
+      <div class="ms-body">Open to data, software, and automation roles — remote or on-site. The road keeps going.</div>
+    </div>
+  </div>
+</section>
+
+<section class="finish">
+  <div class="finish-flag">🏁 FINISH LINE — FOR NOW</div>
+  <h2>Want to be the next milestone?</h2>
+  <p>If you're hiring interns, building something interesting, or just want to chat — I'd love to hear from you.</p>
+  <div class="cta-row">
+    <a class="btn btn-primary" href="mailto:smeet.kataria@somaiya.edu">Get in touch</a>
+    <a class="btn btn-secondary" href="resume.pdf" target="_blank" rel="noopener">Download résumé</a>
+    <a class="btn btn-secondary" href="Index.html">Back to portfolio</a>
+  </div>
+</section>
+
+<footer>© <span id="yr"></span> Smeet Kataria · Thane, Mumbai, India</footer>
+
+<script>
+document.getElementById('yr').textContent=new Date().getFullYear();
+
+// Stars
+(function(){
+  const host=document.getElementById('stars');
+  for(let i=0;i<70;i++){
+    const s=document.createElement('span');
+    const size=Math.random()*1.8+0.4;
+    s.style.width=s.style.height=size+'px';
+    s.style.left=Math.random()*100+'%';
+    s.style.top=Math.random()*100+'%';
+    const dur=Math.random()*2.5+1.5;
+    s.style.animationDuration=dur+'s';
+    s.style.animationDelay=(-Math.random()*dur)+'s';
+    host.appendChild(s);
+  }
+})();
+
+// Reveal milestones on scroll
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+},{threshold:.2});
+document.querySelectorAll('.milestone').forEach(m=>io.observe(m));
+
+// Animate the road path drawing as you scroll
+(function(){
+  const fg=document.querySelector('.road-fg');
+  if(!fg)return;
+  const len=fg.getTotalLength();
+  fg.style.strokeDasharray=len;
+  fg.style.strokeDashoffset=len;
+  const timeline=document.getElementById('timeline');
+  function onScroll(){
+    const rect=timeline.getBoundingClientRect();
+    const vh=window.innerHeight;
+    const total=rect.height+vh;
+    const progress=Math.min(1,Math.max(0,(vh-rect.top)/total));
+    fg.style.strokeDashoffset=len*(1-progress);
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+</body>
+</html>
