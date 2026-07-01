@@ -213,6 +213,27 @@ body:hover .cursor-glow{opacity:1;}
 .entry:hover::after{opacity:.7;transform:translateX(0);}
 @media(max-width:600px){.entry::after{display:none;}}
 
+/* MARQUEE RIBBON — before footer, infinite scroll status strip */
+.marquee{overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:22px 0;background:rgba(232,224,211,.02);}
+.marquee-track{display:flex;gap:64px;white-space:nowrap;animation:marquee 32s linear infinite;font-family:'Fraunces',Georgia,serif;font-style:italic;font-size:1.3rem;color:var(--ink2);}
+.marquee-track span{display:inline-flex;align-items:center;gap:64px;flex-shrink:0;}
+.marquee-track span::after{content:'✦';color:var(--accent);font-style:normal;font-size:.8rem;}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+.marquee:hover .marquee-track{animation-play-state:paused;}
+
+/* BEYOND CARD 3D TILT */
+.beyond-card{transform-style:preserve-3d;perspective:1000px;}
+.beyond-card > *{transition:transform .3s var(--ease);}
+
+/* CUSTOM SCROLLBAR */
+::-webkit-scrollbar{width:10px;height:10px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,rgba(217,113,66,.4),rgba(217,113,66,.2));border-radius:100px;border:2px solid var(--bg);}
+::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,rgba(217,113,66,.7),rgba(217,113,66,.4));}
+
+/* SECTION NUMBER TICKER — the "01" in sec-label counts up */
+.sec-num{display:inline-block;font-variant-numeric:tabular-nums;min-width:1.6em;}
+
 /* SCROLL PROGRESS BAR — hairline gold under the topbar */
 .progress-bar{position:fixed;top:0;left:0;height:2px;background:var(--accent);z-index:200;transform-origin:left;transform:scaleX(0);transition:transform .1s linear;box-shadow:0 0 12px rgba(217,113,66,.6);}
 
@@ -457,6 +478,13 @@ body:hover .cursor-glow{opacity:1;}
   </div>
 </section>
 
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Available Summer 2026</span><span>Next.js · Supabase · Python</span><span>Ex-Intern @ DVOC</span><span>B.Tech AI &amp; DS '28</span><span>Piano · Photography · Badminton</span><span>Based in Mumbai</span>
+    <span>Available Summer 2026</span><span>Next.js · Supabase · Python</span><span>Ex-Intern @ DVOC</span><span>B.Tech AI &amp; DS '28</span><span>Piano · Photography · Badminton</span><span>Based in Mumbai</span>
+  </div>
+</div>
+
 <footer>
   © <span id="yr"></span> Smeet Kataria · Thane, Mumbai, India
 </footer>
@@ -691,6 +719,57 @@ document.getElementById('yr').textContent=new Date().getFullYear();
     tx=e.clientX;ty=e.clientY;
     if(!raf)raf=requestAnimationFrame(loop);
   },{passive:true});
+})();
+
+// Section number ticker — "01" ticks from 00 → target when section enters view
+(function(){
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const labels=document.querySelectorAll('.sec-label');
+  const items=[];
+  labels.forEach(el=>{
+    const m=el.textContent.match(/^(\d{2})\s*—\s*(.*)$/);
+    if(!m)return;
+    const target=parseInt(m[1],10);
+    const rest=m[2];
+    el.innerHTML=`<span class="sec-num">${reduce?String(target).padStart(2,'0'):'00'}</span> — ${rest}`;
+    items.push({el,num:el.querySelector('.sec-num'),target});
+  });
+  if(reduce||!items.length)return;
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting)return;
+      const item=items.find(x=>x.el===e.target);
+      if(!item)return;
+      const start=performance.now(),dur=800;
+      function tick(now){
+        const t=Math.min(1,(now-start)/dur);
+        const eased=1-Math.pow(1-t,3);
+        const v=Math.round(item.target*eased);
+        item.num.textContent=String(v).padStart(2,'0');
+        if(t<1)requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+      io.unobserve(e.target);
+    });
+  },{threshold:.35});
+  items.forEach(x=>io.observe(x.el));
+})();
+
+// Beyond Work card — 3D tilt on hover
+(function(){
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce)return;
+  document.querySelectorAll('.beyond-card').forEach(card=>{
+    card.addEventListener('pointermove',(e)=>{
+      const r=card.getBoundingClientRect();
+      const dx=((e.clientX-r.left)/r.width-0.5);
+      const dy=((e.clientY-r.top)/r.height-0.5);
+      card.style.transform=`translateY(-4px) rotateX(${(-dy*5).toFixed(2)}deg) rotateY(${(dx*7).toFixed(2)}deg)`;
+    });
+    card.addEventListener('pointerleave',()=>{
+      card.style.transform='';
+    });
+  });
 })();
 
 // Hero photo scroll parallax — subtle counter-drift
