@@ -191,6 +191,28 @@ footer{padding:60px 28px;text-align:center;font-size:.78rem;color:var(--ink2);bo
 .hero-photo{perspective:1000px;}
 .hero-photo img,.hero-photo-fallback{transition:transform .3s var(--ease);}
 
+/* CURSOR SPOTLIGHT — warm radial follows pointer */
+.cursor-glow{position:fixed;top:0;left:0;width:520px;height:520px;pointer-events:none;z-index:1;
+  background:radial-gradient(circle,rgba(217,113,66,.14),transparent 65%);
+  transform:translate3d(-50%,-50%,0);transition:opacity .4s var(--ease);opacity:0;mix-blend-mode:screen;}
+body:hover .cursor-glow{opacity:1;}
+
+/* GRAIN OVERLAY — SVG noise for editorial texture */
+.grain{position:fixed;inset:0;pointer-events:none;z-index:2;opacity:.35;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='3' type='fractalNoise'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");}
+
+/* SECTION TITLE UNDERLINE DRAW */
+.sec-title{position:relative;display:inline-block;padding-bottom:16px;}
+.sec-title::after{content:'';position:absolute;left:0;bottom:0;width:56px;height:2px;background:var(--sec,var(--accent));transform:scaleX(0);transform-origin:left;transition:transform .8s var(--spring);transition-delay:.2s;}
+.sec-title.in::after,.reveal.sec-title.in::after{transform:scaleX(1);}
+
+/* ENTRY HOVER — subtle chevron on right + border warm */
+.entry{position:relative;transition:padding-left .4s var(--spring),border-color .3s var(--ease);}
+.entry::after{content:'→';position:absolute;right:0;top:32px;color:var(--sec,var(--accent));font-family:'Fraunces',Georgia,serif;font-style:italic;opacity:0;transform:translateX(-6px);transition:all .4s var(--spring);pointer-events:none;font-size:1.2rem;}
+.entry:hover{padding-left:12px;}
+.entry:hover::after{opacity:.7;transform:translateX(0);}
+@media(max-width:600px){.entry::after{display:none;}}
+
 /* SCROLL PROGRESS BAR — hairline gold under the topbar */
 .progress-bar{position:fixed;top:0;left:0;height:2px;background:var(--accent);z-index:200;transform-origin:left;transform:scaleX(0);transition:transform .1s linear;box-shadow:0 0 12px rgba(217,113,66,.6);}
 
@@ -206,6 +228,8 @@ footer{padding:60px 28px;text-align:center;font-size:.78rem;color:var(--ink2);bo
 
 <div class="bg-mesh" aria-hidden="true"><span class="b1"></span><span class="b2"></span><span class="b3"></span><span class="b4"></span></div>
 <div class="bg-stars" id="stars" aria-hidden="true"></div>
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
 <div class="progress-bar" id="progress" aria-hidden="true"></div>
 
 <nav id="topbar">
@@ -648,6 +672,43 @@ document.getElementById('yr').textContent=new Date().getFullYear();
     });
   },{rootMargin:'-40% 0px -55% 0px'});
   map.forEach((_,sec)=>io.observe(sec));
+})();
+
+// Cursor spotlight — warm radial follows pointer
+(function(){
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const glow=document.getElementById('cursorGlow');
+  if(!glow||reduce){if(glow)glow.remove();return;}
+  let tx=0,ty=0,cx=0,cy=0,raf=null;
+  function loop(){
+    cx+=(tx-cx)*0.18;
+    cy+=(ty-cy)*0.18;
+    glow.style.transform=`translate3d(${cx}px,${cy}px,0) translate(-50%,-50%)`;
+    if(Math.abs(tx-cx)>0.3||Math.abs(ty-cy)>0.3)raf=requestAnimationFrame(loop);
+    else raf=null;
+  }
+  window.addEventListener('pointermove',(e)=>{
+    tx=e.clientX;ty=e.clientY;
+    if(!raf)raf=requestAnimationFrame(loop);
+  },{passive:true});
+})();
+
+// Hero photo scroll parallax — subtle counter-drift
+(function(){
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce)return;
+  const photo=document.querySelector('.hero-photo');
+  if(!photo)return;
+  let ticking=false;
+  function update(){
+    const y=window.scrollY;
+    const shift=Math.min(y*0.15,80);
+    photo.style.setProperty('transform',`translateY(${shift}px)`);
+    ticking=false;
+  }
+  window.addEventListener('scroll',()=>{
+    if(!ticking){requestAnimationFrame(update);ticking=true;}
+  },{passive:true});
 })();
 
 // Magnetic CTA buttons — gentle pull toward cursor
