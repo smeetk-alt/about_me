@@ -65,7 +65,7 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;color:var(-
 body > *{position:relative;z-index:1;}
 
 /* TOP BAR */
-#topbar{position:fixed;top:0;left:0;right:0;z-index:100;padding:22px 40px;
+#topbar{position:fixed;top:0;left:0;right:0;z-index:500;padding:22px 40px;pointer-events:auto;
   display:flex;justify-content:space-between;align-items:center;
   background:rgba(26,38,32,.75);backdrop-filter:blur(20px) saturate(140%);
   -webkit-backdrop-filter:blur(20px) saturate(140%);
@@ -73,7 +73,7 @@ body > *{position:relative;z-index:1;}
 .tb-logo{font-weight:500;font-size:.95rem;color:var(--ink);text-decoration:none;letter-spacing:-.015em;}
 .tb-logo em{font-family:'Fraunces',Georgia,serif;font-style:italic;color:var(--accent);font-weight:400;margin-left:1px;}
 .tb-nav{display:flex;gap:36px;}
-.tb-nav a{font-size:.82rem;color:var(--ink2);text-decoration:none;transition:color .3s var(--ease);font-weight:400;letter-spacing:.01em;position:relative;}
+.tb-nav a{font-size:.82rem;color:var(--ink2);text-decoration:none;transition:color .3s var(--ease);font-weight:400;letter-spacing:.01em;position:relative;pointer-events:auto;cursor:pointer;}
 .tb-nav a::after{content:'';position:absolute;left:0;right:0;bottom:-6px;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .4s var(--spring);}
 .tb-nav a:hover{color:var(--ink);}
 .tb-nav a:hover::after{transform:scaleX(1);}
@@ -113,7 +113,8 @@ body > *{position:relative;z-index:1;}
 .btn-secondary:hover{border-color:rgba(232,224,211,.25);background:rgba(232,224,211,.04);transform:translateY(-2px);}
 
 /* SECTION */
-section{padding:120px 0;border-top:1px solid var(--border);position:relative;}
+section{padding:120px 0;border-top:1px solid var(--border);position:relative;scroll-margin-top:80px;}
+#top{scroll-margin-top:0;}
 section::before{content:'';position:absolute;top:-1px;left:50%;transform:translateX(-50%);width:80px;height:1px;background:var(--sec,var(--accent));opacity:.6;box-shadow:0 0 24px var(--sec,var(--accent));}
 .sec-label{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--sec,var(--accent));margin-bottom:18px;letter-spacing:.18em;text-transform:uppercase;}
 .sec-title{font-size:clamp(1.8rem,3.2vw,2.4rem);font-weight:500;letter-spacing:-.025em;margin-bottom:56px;line-height:1.1;}
